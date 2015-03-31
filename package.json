@@ -1,0 +1,46 @@
+{
+  "name": "nti.lib.whiteboardjs",
+  "version": "0.0.0",
+  "description": "NextThought Whiteboard Library (Rendering, Interaction, Serialization)",
+  "main": "index.js",
+  "repository": {
+      "type": "git",
+      "url": "ssh://repos.nextthought.com/nti.lib.whiteboardjs"
+  },
+  "scripts": {
+      "test": "grunt test",
+      "prepublish": "grunt test"
+  },
+  "keywords": [
+    "whiteboard",
+    "nextthought"
+  ],
+  "author": "NextThought",
+  "license": "private",
+
+  "devDependencies": {
+      "babel": "*",
+      "babel-runtime": "*",
+      "babel-loader": "*",
+      "babel-eslint": "*",
+      "grunt": "*",
+      "grunt-eslint": "*",
+      "grunt-karma": "*",
+      "jasmine-core": "*",
+      "jshint-log-reporter": "*",
+      "karma": "*",
+      "karma-chrome-launcher": "*",
+      "karma-firefox-launcher": "*",
+      "karma-html-reporter": "*",
+      "karma-jasmine": "*",
+      "karma-junit-reporter": "*",
+      "karma-mocha-reporter": "*",
+      "karma-phantomjs-launcher": "*",
+      "karma-script-launcher": "*",
+      "karma-sourcemap-loader": "*",
+      "karma-webpack": "*",
+      "load-grunt-tasks": "*",
+      "webpack": "*",
+      "webpack-dev-server": "*"
+  }
+}
