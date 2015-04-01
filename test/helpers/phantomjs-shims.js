@@ -16,7 +16,6 @@ require('babel/browser-polyfill');
 			var args = slice.call(arguments, 1);
 
 			function bound() {
-				/*jshint -W040 */
 				var invokedAsConstructor = func.prototype && (this instanceof func);
 				return func.apply(
 					// Ignore the context parameter when invoking the bound function
@@ -26,7 +25,6 @@ require('babel/browser-polyfill');
 					!invokedAsConstructor && context || this,
 					args.concat(slice.call(arguments))
 				);
-				/*jshint +W040 */
 			}
 
 			// The bound function must share the .prototype of the unbound
@@ -37,4 +35,4 @@ require('babel/browser-polyfill');
 			return bound;
 		};
 	}
-})();
+}());
