@@ -21,6 +21,7 @@ module.exports = function(grunt) {
 	});
 
 	//grunt.registerTask('docs',['jsdoc']);
+	grunt.registerTask('lint', ['eslint']);
 	grunt.registerTask('test', ['karma']);
 	grunt.registerTask('default', ['eslint']);
 
