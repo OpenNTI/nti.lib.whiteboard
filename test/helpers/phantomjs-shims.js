@@ -1,4 +1,4 @@
-require('babel/browser-polyfill');
+require('babel/polyfill');
 //require('babel/polyfill');
 
 /*eslint no-var:0, no-extra-strict: 0*/
