@@ -8,8 +8,7 @@
       "url": "ssh://repos.nextthought.com/nti.lib.whiteboardjs"
   },
   "scripts": {
-      "test": "grunt test",
-      "prepublish": "grunt test"
+      "test": "grunt test"
   },
   "keywords": [
     "whiteboard",
