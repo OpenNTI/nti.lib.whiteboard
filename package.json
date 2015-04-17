@@ -17,6 +17,10 @@
 	"author": "NextThought",
 	"license": "private",
 
+	"dependencies": {
+		"exif-js": "jseidelin/exif-js#fdf760cf40ae24749a8b7f8ab6550bd98fd70539"
+	},
+
 	"devDependencies": {
 		"babel": ">=5.0.0",
 		"babel-runtime": ">=5.0.0",
