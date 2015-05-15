@@ -34,6 +34,7 @@
 
 	"rules": {
 		"camelcase": [2, {"properties": "always"}],/*default*/
+		"consistent-return": 0,
 		"curly": [2, "all"],/*default*/
 		"eqeqeq": [2, "allow-null"],
 		"indent": [2, "tab"],
@@ -53,8 +54,10 @@
 		"no-unused-vars": 2,/*default*/
 		"no-use-before-define": [2, "nofunc"],
 		"no-var": 2,
-		"quotes": "single",
-		"strict": "never",
+		"quotes": [1, "single"],
+		"radix": 2,
+		"space-before-blocks": [1, "always"],
+		"strict": [2, "never"],
 		"wrap-iife": [2, "outside"],
 		"valid-jsdoc": 1
 	}
