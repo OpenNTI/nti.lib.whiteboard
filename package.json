@@ -15,7 +15,7 @@
     "nextthought"
   ],
   "author": "NextThought",
-  "license": "private",
+  "private": true,
   "dependencies": {
     "exif-js": "jseidelin/exif-js#fdf760cf40ae24749a8b7f8ab6550bd98fd70539"
   },
