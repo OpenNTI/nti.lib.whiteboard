@@ -1,7 +1,7 @@
 /*eslint strict: 0*/
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 	// Let *load-grunt-tasks* require everything
 	require('load-grunt-tasks')(grunt);
 
