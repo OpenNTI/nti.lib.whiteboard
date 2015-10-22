@@ -1,4 +1,4 @@
-/*eslint strict: 0*/
+/*eslint no-var: 0 strict: 0*/
 'use strict';
 
 module.exports = function (grunt) {
@@ -7,8 +7,18 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 		karma: {
-			unit: {
+			options: {
 				configFile: 'karma.conf.js'
+			},
+			continuous: {
+				reporters: ['dots', 'junit'],
+				singleRun: true
+			},
+			unit: {},
+			dev: {
+				reporters: 'dots',
+				singleRun: false,
+				autoWatch: true
 			}
 		},
 
@@ -23,7 +33,12 @@ module.exports = function (grunt) {
 
 	//grunt.registerTask('docs',['jsdoc']);
 	grunt.registerTask('lint', ['eslint']);
-	grunt.registerTask('test', ['karma']);
 	grunt.registerTask('default', ['eslint']);
+	grunt.registerTask('test', function (target) {
+		var t = target || 'unit';
+		return grunt.task.run([
+			'karma:' + t
+		]);
+	});
 
 };
