@@ -17,7 +17,7 @@
   "author": "NextThought",
   "private": true,
   "dependencies": {
-    "exif-js": "jseidelin/exif-js#fdf760cf40ae24749a8b7f8ab6550bd98fd70539"
+    "exif-js": "^2.1.1"
   },
   "devDependencies": {
     "babel": "^5.0.0",
@@ -38,6 +38,7 @@
     "karma-sourcemap-loader": "^0.3.4",
     "karma-webpack": "^1.5.0",
     "load-grunt-tasks": "^3.1.0",
+    "phantomjs": "^1.9.18",
     "webpack": "^1.8.4",
     "webpack-dev-server": "^1.8.0"
   }
