@@ -108,6 +108,19 @@ module.exports = function (config) {
 			],
 
 			module: {
+				preLoaders: [
+					{
+						test: /\.js(x)?$/,
+						loader: 'isparta-instrumenter',
+						exclude: [
+							/node_modules/,
+							/shims.js$/,
+							/spec.js$/,
+							/__test__/,
+							/test\/main/
+						]
+					}
+				],
 				loaders: [
 					{ test: /\.json$/, loader: 'json' },
 					{
