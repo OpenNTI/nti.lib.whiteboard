@@ -57,11 +57,12 @@ module.exports = function (config) {
 
 		htmlReporter: {
 			//templatePath: __dirname+'/jasmine_template.html',
-			outputDir: 'reports/test-results'
+			outputDir: 'reports'
 		},
 
 		junitReporter: {
-			outputFile: 'reports/test-results.xml',
+			outputDir: 'reports',
+			outputFile: 'test-results.xml',
 			suite: 'nti.lib.whiteboardjs',
 			useBrowserName: false
 		},
