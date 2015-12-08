@@ -12,7 +12,7 @@
     "url": "ssh://repos.nextthought.com/nti.lib.whiteboardjs"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test:continuous"
   },
   "keywords": [
     "whiteboard",
