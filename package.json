@@ -1,5 +1,5 @@
 {
-  "name": "nti.lib.whiteboardjs",
+  "name": "nti-lib-whiteboardjs",
   "version": "1.2.0",
   "author": "nextthought",
   "description": "NextThought Whiteboard Library (Rendering, Interaction, Serialization)",
@@ -16,7 +16,9 @@
     "url": "ssh://repos.nextthought.com/nti.lib.whiteboardjs"
   },
   "scripts": {
-    "test": "karma start --single-run --reporters dots,html,junit,coverage"
+    "test": "karma start --single-run --reporters dots,html,junit,coverage",
+    "start": "make check",
+    "prepublish": "karma start --single-run && make"
   },
   "keywords": [
     "whiteboard",

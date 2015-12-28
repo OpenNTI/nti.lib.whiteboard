@@ -53,7 +53,7 @@ module.exports = function (config) {
 		junitReporter: {
 			outputDir: 'reports/test-results/',
 			outputFile: 'index.xml',
-			suite: 'nti.lib.whiteboardjs',
+			suite: 'nti-lib-whiteboardjs',
 			useBrowserName: false
 		},
 
