@@ -26,7 +26,8 @@
     "nextthought"
   ],
   "dependencies": {
-    "exif-js": "^2.1.1"
+    "exif-js": "^2.1.1",
+    "nti-util-logger": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.1.0",

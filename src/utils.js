@@ -1,7 +1,12 @@
-import Matrix from './Matrix';
+import Logger from 'nti-util-logger';
+
 import url from 'url';
 
+import Matrix from './Matrix';
+
 import EXIF from 'exif-js';
+
+const logger = Logger.get('lib:whiteboard:utils');
 
 export const URL = global.URL && global.URL.createObjectURL ?
 				global.URL :
@@ -117,7 +122,7 @@ export function maybeProxyImage (src, image) {
 
 
 	tempImage.onerror = () => {
-		console.error('Could not load: ' + src);
+		logger.error('Could not load: ' + src);
 		passthrough();
 	};
 
@@ -173,7 +178,7 @@ function canvasScale (canvas, width, height) {
 
 	ctx.drawImage(canvas,	0, 0, W,		H,		//source
 							0, 0, width,	height);//dest
-	//console.log("canvas scale = " + (Math.round(Date.now() - start) / 1000)+" s");
+	//logger.debug("canvas scale = " + (Math.round(Date.now() - start) / 1000)+" s");
 	return cs;
 }
 
@@ -361,7 +366,7 @@ export function createFromImage (img) {
 
 	return getOrientationTransform(img)
 		.catch(er=> {
-			console.debug('No EXIF compensation: %o', er.stack || er.message || er);
+			logger.debug('No EXIF compensation: %o', er.stack || er.message || er);
 			return null;
 		})
 		.then(transform => {

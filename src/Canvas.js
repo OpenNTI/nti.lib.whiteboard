@@ -1,9 +1,13 @@
+import Logger from 'nti-util-logger';
+
 import Circle from './shapes/Circle';
 import Line from './shapes/Line';
 import Path from './shapes/Path';
 import Polygon from './shapes/Polygon';
 import Text from './shapes/Text';
 import Url from './shapes/Url';
+
+const logger = Logger.get('lib:whiteboard:canvas');
 
 const Blob = global.Blob || global.WebKitBlob || global.webkitBlob;
 
@@ -22,7 +26,7 @@ function makeShape (data) {
 	//reparent shapes
 	let c = (OBJECT_NAME.exec(data.Class) || [])[1];
 	if (!c) {
-		console.warn('Not a shape: ' + JSON.stringify(data));
+		logger.warn('Not a shape: ' + JSON.stringify(data));
 		return null;
 	}
 
@@ -152,7 +156,7 @@ export default class Canvas {
 
 		if (this.drawing) {
 			return this.drawing
-				.catch((e)=>console.warn(e))
+				.catch((e)=>logger.warn(e))
 				.then(()=>this.drawScene());
 			// return Promise.reject('Cannot begin drawing while already drawing.');
 		}

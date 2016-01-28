@@ -88,7 +88,6 @@ export default class Url extends Base {
 
 
 	imageFailed (image, ctx, cb) {
-		console.log('failed to load: ' + this.url);
 		if (this.url !== BROKEN_IMAGE) {
 			image.src = BROKEN_IMAGE;
 			return;

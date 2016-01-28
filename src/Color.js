@@ -1,3 +1,7 @@
+import Logger from 'nti-util-logger';
+
+const logger = Logger.get('lib:whiteboard:color');
+
 /*global console*/
 const HEX = /\s*#([0-9a-fA-F][0-9a-fA-F]?)([0-9a-fA-F][0-9a-fA-F]?)([0-9a-fA-F][0-9a-fA-F]?)\s*/;
 const HEX16 = /^#?([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])$/i;
@@ -286,7 +290,7 @@ export default class Color {
 			return hex;
 		}
 		catch (e) {
-			console.log('Error: ', e);
+			logger.error('Error: %o', e);
 		}
 		return color;
 	}

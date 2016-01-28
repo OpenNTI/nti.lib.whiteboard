@@ -1,7 +1,11 @@
+import Logger from 'nti-util-logger';
+
 import TransformLimitReached from '../TransformLimitReached';
 import Color from '../Color';
 import Matrix from '../Matrix';
 import {toRadians, getDegrees} from '../utils';
+
+const logger = Logger.get('lib:whiteboard:shapes:base');
 
 const COLOR = /rgba\((.+?),(.+?),(.+?),(.+?)\)/im;
 
@@ -119,7 +123,7 @@ export default class Base {
 			return this.cache[name];
 		}
 		catch (er) {
-			console.log('error parsing color: ', value);
+			logger.debug('error parsing color: ', value);
 		}
 		return '#000000';
 	}
@@ -196,14 +200,14 @@ export default class Base {
 			h = this.bbox.h / 2,
 			r = -m.getRotation();
 
-		//console.log(sx, sy);
+		//logger.debug(sx, sy);
 		let adjustedDx = dx * Math.cos(r) - dy * Math.sin(r);
 		let adjustedDy = dx * Math.sin(r) + dy * Math.cos(r);
 
-		//console.log(adjustedDx, adjustedDy, mag);
+		//logger.debug(adjustedDx, adjustedDy, mag);
 		sx = s[0] + (sx * adjustedDx) / w;
 		sy = s[1] + (sy * adjustedDy) / h;
-		//console.log(sx, sy);
+		//logger.debug(sx, sy);
 
 		if (sx >= 0 && sy >= 0) {
 			let translate = [0, 0];
@@ -320,7 +324,7 @@ export default class Base {
 			if (e === this.STOP_NIB) {
 				throw new TransformLimitReached();
 			}
-			console.error('No modifier for ', nib);
+			logger.error('No modifier for ', nib);
 		}
 	}
 
@@ -463,7 +467,7 @@ export default class Base {
 			if (d <= nib.r) {
 				return n;
 			// } else {
-			// 	console.log(n, 'distance:', d, 'radius:', nib.r, 'nib xy: (', nib.x, nib.y,') point: (', x,y, ')');
+			// 	logger.debug(n, 'distance:', d, 'radius:', nib.r, 'nib xy: (', nib.x, nib.y,') point: (', x,y, ')');
 			}
 		}
 
@@ -480,7 +484,7 @@ export default class Base {
 	 */
 	isPointInShape (x, y) {
 		if (!this.bbox) {
-			console.warn('no bounding box computed');
+			logger.warn('no bounding box computed');
 			return false;
 		}
 
