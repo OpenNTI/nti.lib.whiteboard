@@ -19,7 +19,7 @@
   "scripts": {
     "test": "karma start --single-run --reporters dots,html,junit,coverage",
     "start": "make check",
-    "prepublish": "make test && make"
+    "prepublish": "make"
   },
   "keywords": [
     "whiteboard",
