@@ -1,5 +1,6 @@
-import Base from './Base';
 import Matrix from '../Matrix';
+
+import Base from './Base';
 
 export default class Path extends Base {
 

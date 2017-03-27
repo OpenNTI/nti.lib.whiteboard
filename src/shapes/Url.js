@@ -1,5 +1,6 @@
-import Base from './Base';
 import {getOrientationTransform} from '../utils';
+
+import Base from './Base';
 
 const BROKEN_IMAGE = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAO8AAADvCA' +
 					'MAAAAtrnOLAAABX1BMVEXc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nz' +

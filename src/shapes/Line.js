@@ -1,6 +1,7 @@
-import Base from './Base';
 import {toRadians, getDegrees, getDistance} from '../utils';
 import Matrix from '../Matrix';
+
+import Base from './Base';
 
 export default class Line extends Base {
 

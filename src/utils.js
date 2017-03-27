@@ -1,10 +1,10 @@
-import Logger from 'nti-util-logger';
-
 import url from 'url';
+
+import EXIF from 'exif-js';
+import Logger from 'nti-util-logger';
 
 import Matrix from './Matrix';
 
-import EXIF from 'exif-js';
 
 const logger = Logger.get('lib:whiteboard:utils');
 
