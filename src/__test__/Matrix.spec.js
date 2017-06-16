@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import Matrix from '../Matrix';
 import {toRadians} from '../utils';
 
@@ -5,7 +6,7 @@ const TWO_PI = 2 * Math.PI;
 
 describe('Whiteboard Matrix Utility Class Tests', ()=> {
 
-	it('should test an identity matrix', ()=> {
+	test ('should test an identity matrix', ()=> {
 		let matrix = new Matrix();
 		let m = matrix.toTransform();
 
@@ -18,7 +19,7 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 	});
 
 
-	it('should init with a matrix', ()=> {
+	test ('should init with a matrix', ()=> {
 		let matrix = new Matrix({a: 1, b: 0, c: 0, d: 1, tx: 120, ty: 80});
 
 		let m = matrix.toTransform();
@@ -43,7 +44,7 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 	});
 
 
-	it('should rotate', ()=> {
+	test ('should rotate', ()=> {
 
 		let matrix = new Matrix();
 
@@ -75,7 +76,7 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 	});
 
 
-	it('should scale by 2', ()=> {
+	test ('should scale by 2', ()=> {
 		let t = {
 			a: 0.1342,
 			b: 0.2324,
@@ -97,7 +98,7 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 	});
 
 
-	it('should translate by (23,57)', ()=> {
+	test ('should translate by (23,57)', ()=> {
 		let t = {a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0};
 		let matrix = new Matrix(t);
 
@@ -111,7 +112,7 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 	});
 
 
-	it('should translate by (10,20), scale by 2.5, then rotate completely around', ()=> {
+	test ('should translate by (10,20), scale by 2.5, then rotate completely around', ()=> {
 		const f = 2.5;
 		let t = {a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0};
 		let matrix = new Matrix(t);
@@ -142,7 +143,7 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 	});
 
 
-	it('should rotate by 120, then scale by 0.45', ()=> {
+	test ('should rotate by 120, then scale by 0.45', ()=> {
 		const f = 0.45;
 		let t = {a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0};
 		let matrix = new Matrix(t);

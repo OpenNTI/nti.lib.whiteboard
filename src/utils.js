@@ -53,7 +53,7 @@ export function getDegrees (x0, y0, x1, y1) {
 		[x0, y0, x1, y1] = x0;
 	}
 
-	let dx = (x1 - x0), dy = (y1 - y0);
+	const dx = (x1 - x0), dy = (y1 - y0);
 
 	return Math.atan2(dy, dx) * 180 / Math.PI;
 }
@@ -74,7 +74,7 @@ export function getDistance (x1, y1, x2, y2) {
 		[x1, y1, x2, y2] = x1;
 	}
 
-	let dx = (x2 - x1), dy = (y2 - y1);
+	const dx = (x2 - x1), dy = (y2 - y1);
 
 	return Math.sqrt(dx * dx + dy * dy);
 }
@@ -82,8 +82,9 @@ export function getDistance (x1, y1, x2, y2) {
 
 export function canUse (image, fastOnCORS = true) {
 	try {
-		let p = url.parse(image.src);
-		let cors = (p.hostname !== location.hostname || p.port !== location.port);
+		const {location} = global;
+		const p = url.parse(image.src);
+		const cors = (p.hostname !== location.hostname || p.port !== location.port);
 		if (p.protocol === 'data:' || !cors) {
 			return true;
 		}
@@ -91,8 +92,8 @@ export function canUse (image, fastOnCORS = true) {
 			return false;
 		}
 
-		let c = document.createElement('canvas');
-		let ctx = c.getContext('2d');
+		const c = document.createElement('canvas');
+		const ctx = c.getContext('2d');
 		ctx.drawImage(image, 0, 0);
 		c.getImageData(0, 0, 1, 1);
 		c.width = 0;//should free the buffer we just rendered

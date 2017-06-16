@@ -1,8 +1,9 @@
+/* eslint-env jest */
 import Color from '../Color';
 
 describe('Check Color Utility Functions', () => {
 
-	it('does rgb string result in correct object?', () => {
+	test ('does rgb string result in correct object?', () => {
 		let fillColor = 'rgb(0,0,0)',
 			result;
 
@@ -15,7 +16,7 @@ describe('Check Color Utility Functions', () => {
 	});
 
 
-	it('does rgb string and opacity result in correct object?', () => {
+	test ('does rgb string and opacity result in correct object?', () => {
 		let fillColor = 'rgb(0,0,0)',
 			fillOpacity = 1,
 			result;
@@ -29,7 +30,7 @@ describe('Check Color Utility Functions', () => {
 		expect(result.toString()).toEqual('rgba(0,0,0,1)');
 	});
 
-	it('does rgb string and opacity result in correct object 2?', () => {
+	test ('does rgb string and opacity result in correct object 2?', () => {
 		let fillColor = 'rgba(0,0,0,1)',
 			result;
 
