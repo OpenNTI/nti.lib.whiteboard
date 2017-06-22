@@ -66,7 +66,7 @@ export default class Circle extends Base {
 
 
 	drawTriangle (ctx) {
-    /**
+		/**
      * Unused func. We will use it to draw triangles correctly.
      */
 		let w2 = 0.5,

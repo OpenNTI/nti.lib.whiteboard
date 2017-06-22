@@ -9,10 +9,10 @@ import Matrix from './Matrix';
 const logger = Logger.get('lib:whiteboard:utils');
 
 export const URL = global.URL && global.URL.createObjectURL ?
-				global.URL :
-				global.webkitURL && global.webkitURL.createObjectURL ?
-					global.webkitURL :
-					null;
+	global.URL :
+	global.webkitURL && global.webkitURL.createObjectURL ?
+		global.webkitURL :
+		null;
 
 const MAX_IMAGE_WIDTH = 1024;
 const MAX_IMAGE_HEIGHT = 768;
@@ -178,7 +178,7 @@ function canvasScale (canvas, width, height) {
 	ctx.imageSmoothingEnabled = true;
 
 	ctx.drawImage(canvas,	0, 0, W,		H,		//source
-							0, 0, width,	height);//dest
+		0, 0, width,	height);//dest
 	//logger.debug("canvas scale = " + (Math.round(Date.now() - start) / 1000)+" s");
 	return cs;
 }
@@ -241,9 +241,9 @@ function buildCanvasFromImage (img) {
 	let centerX = (tall ? 1 : (scale * width)) / 2;
 
 	let centerY = (tall
-					? (scale * height)
-					: (1 / data.viewportRatio)
-				) / 2;
+		? (scale * height)
+		: (1 / data.viewportRatio)
+	) / 2;
 
 
 	m.translate(centerX, centerY);
@@ -287,7 +287,7 @@ function correctOrientation (image, transform) {
 	m.applyTo(ctx);
 
 	ctx.drawImage(image,	0,			0,				width, height, //source
-							-width / 2,	-height / 2,	width, height);//dest
+		-width / 2,	-height / 2,	width, height);//dest
 
 	return canvas;
 }

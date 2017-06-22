@@ -61,11 +61,11 @@ export default class Url extends Base {
 
 			image = new Image();
 			image.onload = ()=>getOrientationTransform(image)
-								.catch(() => null)
-								.then(transform => {
-									this.auxTransform = transform;
-									this.draw(ctx, drawNext);
-								});
+				.catch(() => null)
+				.then(transform => {
+					this.auxTransform = transform;
+					this.draw(ctx, drawNext);
+				});
 			image.onerror = ()=>this.imageFailed(image, ctx, drawNext);
 			this.cache.url = image;
 			image.src = this.url;
