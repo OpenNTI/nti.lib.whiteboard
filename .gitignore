@@ -1,2 +1,3 @@
-lib
-reports
+lib/
+node_modules/
+reports/
