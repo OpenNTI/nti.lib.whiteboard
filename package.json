@@ -12,6 +12,7 @@
     "type": "git",
     "url": "https://github.com/NextThought/nti.lib.whiteboardjs.git"
   },
+  "testEnvironment": "jsdom",
   "scripts": {
     "test": "nti-lib-scripts test",
     "start": "nti-lib-scripts test --watch",
