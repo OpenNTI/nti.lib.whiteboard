@@ -1,4 +1,4 @@
-import Logger from 'nti-util-logger';
+import Logger from '@nti/util-logger';
 
 import Circle from './shapes/Circle';
 import Line from './shapes/Line';

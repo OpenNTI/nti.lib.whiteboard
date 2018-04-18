@@ -1,4 +1,4 @@
-import Logger from 'nti-util-logger';
+import Logger from '@nti/util-logger';
 
 import TransformLimitReached from '../TransformLimitReached';
 import Color from '../Color';

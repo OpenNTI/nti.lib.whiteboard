@@ -1,4 +1,4 @@
-import Logger from 'nti-util-logger';
+import Logger from '@nti/util-logger';
 
 const logger = Logger.get('lib:whiteboard:color');
 

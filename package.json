@@ -1,5 +1,5 @@
 {
-  "name": "nti-lib-whiteboardjs",
+  "name": "@nti/lib-whiteboard",
   "version": "1.5.0-alpha",
   "author": "nextthought",
   "license": "UNLICENSED",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/NextThought/nti.lib.whiteboardjs.git"
+    "url": "https://github.com/NextThought/nti.lib.whiteboard.git"
   },
   "testEnvironment": "jsdom",
   "scripts": {
@@ -28,8 +28,8 @@
     "nextthought"
   ],
   "dependencies": {
-    "exif-js": "^2.3.0",
-    "nti-util-logger": "^1.0.0"
+    "@nti/util-logger": "^1.0.0",
+    "exif-js": "^2.3.0"
   },
   "devDependencies": {
     "nti-lib-scripts": "^1.0.36"
