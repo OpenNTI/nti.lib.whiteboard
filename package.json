@@ -5,8 +5,10 @@
   "license": "UNLICENSED",
   "description": "NextThought Whiteboard Library (Rendering, Interaction, Serialization)",
   "main": "lib/index.js",
+  "module": "src/index.js",
   "files": [
-    "lib"
+    "lib",
+    "src"
   ],
   "repository": {
     "type": "git",
@@ -35,6 +37,6 @@
     "exif-js": "^2.3.0"
   },
   "devDependencies": {
-    "@nti/lib-scripts": "^1.16.0"
+    "@nti/lib-scripts": "^2.0.0"
   }
 }
