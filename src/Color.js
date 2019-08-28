@@ -2,7 +2,6 @@ import Logger from '@nti/util-logger';
 
 const logger = Logger.get('lib:whiteboard:color');
 
-/*global console*/
 const HEX = /\s*#([0-9a-fA-F][0-9a-fA-F]?)([0-9a-fA-F][0-9a-fA-F]?)([0-9a-fA-F][0-9a-fA-F]?)\s*/;
 const HEX16 = /^#?([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])$/i;
 const HEX8 = /^#?([0-9a-f])([0-9a-f])([0-9a-f])$/i;
@@ -224,7 +223,6 @@ export default class Color {
 		let m = DS_RGBA.exec(string);
 
 		if (m) {
-			//console.log('DataServer color value: ',string);
 			let [, r,, g,, b,,, a] = m;
 			let fmt = x=> (parseFloat(x) * 255).toFixed(0);
 

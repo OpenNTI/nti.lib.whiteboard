@@ -40,7 +40,7 @@ function makeShape (data) {
 
 
 function buildModelsFromData (scene) {
-	let drawData = Object.assign({}, scene || {shapeList: []});
+	let drawData = { ...scene || {shapeList: []}};
 
 	drawData.shapeList = drawData.shapeList.slice();
 
