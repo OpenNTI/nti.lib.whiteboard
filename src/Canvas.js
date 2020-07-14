@@ -203,9 +203,9 @@ export default class Canvas {
 	}
 
 
-	static getThumbnail (scene, asBlob = true) {
+	static getThumbnail (scene, asBlob = true, width = 512) {
 		let c = new this(scene);
-		c.setSize(512, 512 / (scene.viewportRatio || 1), false);
+		c.setSize(width, width / (scene.viewportRatio || 1), false);
 		return c.drawScene().then(()=> asBlob ? c.toBlob() : c.toDataURL('image/jpeg'));
 	}
 }
