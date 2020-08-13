@@ -193,7 +193,13 @@ function scaleImageDown (image, maxW, maxH, transform) {
 
 	if (pixels < maxPixels) {
 		if (transform) {
-			image = correctOrientation(image, transform);
+			let cs = canvasScale(image, width, height);
+			cs = correctOrientation(cs, transform);
+
+			return {
+				width, height,
+				src: toDataURL(cs)
+			};
 		}
 
 		return image;
