@@ -449,7 +449,7 @@ export default class Base {
 	 * @param {number} x Integer or Array of [X,Y] in canvas coordinate space
 	 * @param {number} [y] Integer in canvas coordinate space
 	 *
-	 * @return {boolean} truthy, with the name of the nib if true, false if not within a nib.
+	 * @returns {boolean} truthy, with the name of the nib if true, false if not within a nib.
 	 */
 	isPointInNib (x, y) {
 		let nibs = this.nibData;
@@ -480,7 +480,7 @@ export default class Base {
 	 * @param {number} x unit coordinate space
 	 * @param {number} y unit coordinate space
 	 *
-	 * @return {boolean} true if the x,y coordinate is within the shape. False otherwise.
+	 * @returns {boolean} true if the x,y coordinate is within the shape. False otherwise.
 	 */
 	isPointInShape (x, y) {
 		if (!this.bbox) {
@@ -515,7 +515,7 @@ export default class Base {
 	 *  @param {number} y point to be tested
 	 *  @param {array[]} points two dimentional array with horizontal & vertical coordinates of corners in their own arrays
 	 *
-	 *  @return {boolean} true if the point x,y is inside the polygon, or false if it is not.  If the point is
+	 *  @returns {boolean} true if the point x,y is inside the polygon, or false if it is not.  If the point is
 	 *  exactly on the edge of the polygon, then the function may return true or false.
 	 */
 	pointInPolygon (x, y, points) {

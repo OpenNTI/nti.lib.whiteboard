@@ -34,7 +34,7 @@ export default class Color {
 
 	toHex () {
 		let {red, green, blue} = this;
-		let rgb = blue | (green << 8) | (red << 16);// eslint-disable-line no-bitwise
+		let rgb = blue | (green << 8) | (red << 16);
 
 		return '#' + ('000000' + rgb.toString(16)).slice(-6);
 	}
@@ -68,7 +68,7 @@ export default class Color {
 	static fromString (str) {
 		let r, g, b;
 		let dec = x => x + (x * 16);
-		let par = x => parseInt(x, 16) >> 0;// eslint-disable-line no-bitwise
+		let par = x => parseInt(x, 16) >> 0;
 
 		let parse = x => str.length === 4 ? dec(par(x)) : par(x);
 
@@ -121,7 +121,7 @@ export default class Color {
 			digits = digits.slice(2, 5).map(x=>parseInt(x, 10));
 
 			let [red, green, blue] = digits;
-			let rgb = blue | (green << 8) | (red << 16);// eslint-disable-line no-bitwise
+			let rgb = blue | (green << 8) | (red << 16);
 
 			return prefix + '#' + ('000000' + rgb.toString(16)).slice(-6);
 		}
@@ -207,7 +207,7 @@ export default class Color {
 	static parse (string, alpha) {
 
 		function parseHex (cCmp, is8bit) {
-			let parse = x=>parseInt(x, 16) >> 0;// eslint-disable-line no-bitwise
+			let parse = x=>parseInt(x, 16) >> 0;
 			let filter = x=>is8bit ? (x + (x * 16)) : x;
 
 			cCmp = cCmp.slice(1, 4)
@@ -309,10 +309,8 @@ export default class Color {
 
 		/* Reverse the bits of idx into ridx */
 		for (let i = 0; i < bitcount; i++) {
-			/*eslint-disable no-bitwise*/
 			ridx = (ridx << 1) | (idx & 1);
 			idx >>>= 1;
-			/*eslint-enable no-bitwise*/
 		}
 
 		/* Divide by 2^bitcount */
