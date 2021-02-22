@@ -1,14 +1,11 @@
 import Base from './Base';
 
 export default class Circle extends Base {
-
-
-	constructor (config) {
+	constructor(config) {
 		super(config, ['font-face']);
 	}
 
-
-	draw (ctx, drawNext) {
+	draw(ctx, drawNext) {
 		super.draw(ctx);
 
 		if (!this.cache['font-face']) {
@@ -24,7 +21,6 @@ export default class Circle extends Base {
 			x = -w / 2,
 			y = -h / 2;
 
-
 		if (this.cache.fill) {
 			ctx.fillText(this.text, x, y);
 		}
@@ -34,8 +30,10 @@ export default class Circle extends Base {
 		}
 
 		this.bbox = {
-			x: x,	w: w,
-			y: y,	h: h
+			x: x,
+			w: w,
+			y: y,
+			h: h,
 		};
 
 		if (this.selected === 'Hand') {

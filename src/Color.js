@@ -16,41 +16,43 @@ const GREEN = Symbol('Green');
 const BLUE = Symbol('Blue');
 const ALPHA = Symbol('Alpha');
 
-const rgba = (...a)=> 'rgba(' + a.join(',') + ')';
+const rgba = (...a) => 'rgba(' + a.join(',') + ')';
 
 export default class Color {
-
-	constructor (r, g, b, a, toStringOverride) {
+	constructor(r, g, b, a, toStringOverride) {
 		this[RED] = r;
 		this[GREEN] = g;
 		this[BLUE] = b;
 		this[ALPHA] = a;
 
 		if (toStringOverride) {
-			this.toString = ()=> toStringOverride;
+			this.toString = () => toStringOverride;
 		}
 	}
 
-
-	toHex () {
-		let {red, green, blue} = this;
+	toHex() {
+		let { red, green, blue } = this;
 		let rgb = blue | (green << 8) | (red << 16);
 
 		return '#' + ('000000' + rgb.toString(16)).slice(-6);
 	}
 
-
-	toString () {
-		return this.alpha == null ?
-			this.toHex(this) :
-			Color.toRGBA(this);
+	toString() {
+		return this.alpha == null ? this.toHex(this) : Color.toRGBA(this);
 	}
 
-	get red		() {return this[RED];	}
-	get green	() {return this[GREEN];	}
-	get blue	() {return this[BLUE];	}
-	get alpha	() {return this[ALPHA];	}
-
+	get red() {
+		return this[RED];
+	}
+	get green() {
+		return this[GREEN];
+	}
+	get blue() {
+		return this[BLUE];
+	}
+	get alpha() {
+		return this[ALPHA];
+	}
 
 	/**
 	 *
@@ -65,32 +67,32 @@ export default class Color {
 	 *
 	 * @note from ExtJS 4.2.0 Ext.draw.Color#fromString and modified.
 	 */
-	static fromString (str) {
+	static fromString(str) {
 		let r, g, b;
-		let dec = x => x + (x * 16);
+		let dec = x => x + x * 16;
 		let par = x => parseInt(x, 16) >> 0;
 
-		let parse = x => str.length === 4 ? dec(par(x)) : par(x);
+		let parse = x => (str.length === 4 ? dec(par(x)) : par(x));
 
-		if ((str.length === 4 || str.length === 7) && str.substr(0, 1) === '#') {
-
+		if (
+			(str.length === 4 || str.length === 7) &&
+			str.substr(0, 1) === '#'
+		) {
 			let values = str.match(HEX);
 
 			if (values) {
-				values = values.slice(1, 4).map(x=>parse(x));
+				values = values.slice(1, 4).map(x => parse(x));
 				[r, g, b] = values;
 			}
-		}
-		else {
+		} else {
 			let values = str.match(RGB);
 			if (values) {
 				[, r, g, b] = values;
 			}
 		}
 
-		return (r == null) ? void 0 : new this({r, g, b});
+		return r == null ? void 0 : new this({ r, g, b });
 	}
-
 
 	/**
 	 * Convert a color to hexadecimal format.
@@ -101,7 +103,7 @@ export default class Color {
 	 *
 	 * @note from ExtJS 4.2.0 Ext.draw.Color#toHex and modified.
 	 */
-	static toHex (color) {
+	static toHex(color) {
 		if (Array.isArray(color)) {
 			color = color[0];
 		}
@@ -118,7 +120,7 @@ export default class Color {
 
 		if (Array.isArray(digits)) {
 			let prefix = digits[1];
-			digits = digits.slice(2, 5).map(x=>parseInt(x, 10));
+			digits = digits.slice(2, 5).map(x => parseInt(x, 10));
 
 			let [red, green, blue] = digits;
 			let rgb = blue | (green << 8) | (red << 16);
@@ -129,7 +131,6 @@ export default class Color {
 		return color;
 	}
 
-
 	/**
 	 * Create a new color based on the specified HSL values.
 	 *
@@ -138,14 +139,13 @@ export default class Color {
 	 * @param {number} lightness Lightness component [0,1]
 	 * @returns {Color} color
 	 */
-	static fromHSL (hue, saturation, lightness) {
+	static fromHSL(hue, saturation, lightness) {
 		let rgb = [];
 
 		if (saturation === 0 || hue == null) {
 			// achromatic
 			rgb = [lightness, lightness, lightness];
-		}
-		else {
+		} else {
 			hue /= 60;
 			// http://en.wikipedia.org/wiki/HSL_and_HSV#From_HSL
 
@@ -164,23 +164,20 @@ export default class Color {
 				[0, C, X],
 				[0, X, C],
 				[X, 0, C],
-				[C, 0, X]
+				[C, 0, X],
 			];
 
 			rgb = HUE_MAP[Math.floor(hue)];
 
-
 			rgb = [rgb[0] + m, rgb[1] + m, rgb[2] + m];
 		}
 
-
-		let [r, g, b] = rgb.map(c=> c * 255);
+		let [r, g, b] = rgb.map(c => c * 255);
 
 		return new this(r, g, b);
 	}
 
-
-	static toRGBA (color, alpha) {
+	static toRGBA(color, alpha) {
 		if (typeof color === 'string') {
 			if (!(color = this.fromString(color))) {
 				return 'rgba(255,255,0,1)';
@@ -191,12 +188,11 @@ export default class Color {
 			alpha = color.alpha;
 		}
 
-		let {red, green, blue} = color;
+		let { red, green, blue } = color;
 		alpha = typeof alpha === 'number' ? alpha : 1;
 
 		return rgba(red, green, blue, alpha);
 	}
-
 
 	/**
 	 *
@@ -204,56 +200,43 @@ export default class Color {
 	 * @param {number} [alpha] If supplied, the float will override or add alpha to this color.
 	 * @returns {Color} color
 	 */
-	static parse (string, alpha) {
+	static parse(string, alpha) {
+		function parseHex(cCmp, is8bit) {
+			let parse = x => parseInt(x, 16) >> 0;
+			let filter = x => (is8bit ? x + x * 16 : x);
 
-		function parseHex (cCmp, is8bit) {
-			let parse = x=>parseInt(x, 16) >> 0;
-			let filter = x=>is8bit ? (x + (x * 16)) : x;
-
-			cCmp = cCmp.slice(1, 4)
-				.map(x=>filter(parse(x)));
+			cCmp = cCmp.slice(1, 4).map(x => filter(parse(x)));
 
 			return cCmp;
 		}
 
-		function parseRGBA (c) {
-			return c.map(i=> +i); //ensure they're numbers
+		function parseRGBA(c) {
+			return c.map(i => +i); //ensure they're numbers
 		}
 
 		let m = DS_RGBA.exec(string);
 
 		if (m) {
-			let [, r,, g,, b,,, a] = m;
-			let fmt = x=> (parseFloat(x) * 255).toFixed(0);
+			let [, r, , g, , b, , , a] = m;
+			let fmt = x => (parseFloat(x) * 255).toFixed(0);
 
-			m = [
-				+fmt(r),
-				+fmt(g),
-				+fmt(b),
-				+a
-			];
-		}
-
-		else if ((m = RGBA.exec(string))) {
+			m = [+fmt(r), +fmt(g), +fmt(b), +a];
+		} else if ((m = RGBA.exec(string))) {
 			m = parseRGBA(m[1].split(','));
-		}
-
-		else if ((m = HEX16.exec(string))) {
+		} else if ((m = HEX16.exec(string))) {
 			m = parseHex(m, false);
-		}
-
-		else if ((m = HEX8.exec(string))) {
+		} else if ((m = HEX8.exec(string))) {
 			m = parseHex(m, true);
-		}
-
-		else {
+		} else {
 			throw new Error(`Could not parse color: ${string}`);
 		}
 
-		m[3] = typeof alpha === 'number' ?
-			alpha :
-			typeof m[3] === 'number' && !isNaN(m[3]) ? m[3] : 1;
-
+		m[3] =
+			typeof alpha === 'number'
+				? alpha
+				: typeof m[3] === 'number' && !isNaN(m[3])
+				? m[3]
+				: 1;
 
 		let color = rgba(...m);
 
@@ -266,7 +249,6 @@ export default class Color {
 		return new this(r, g, b, a, color);
 	}
 
-
 	/**
 	 * Converts rgba to rgb then to Hex.
 	 *
@@ -275,7 +257,7 @@ export default class Color {
 	 * @param {string} color a CSS rgba() color string
 	 * @returns {string} a HTML color hex string
 	 */
-	static rgbaToHex (color) {
+	static rgbaToHex(color) {
 		let a = RGBA.exec(color);
 		if (!a) {
 			return color;
@@ -286,13 +268,11 @@ export default class Color {
 			let rgb = 'rgb(' + c.join(',') + ')';
 			let hex = this.toHex(rgb);
 			return hex;
-		}
-		catch (e) {
+		} catch (e) {
 			logger.error('Error: %o', e);
 		}
 		return color;
 	}
-
 
 	/**
 	 * Get a hue by index.
@@ -300,7 +280,7 @@ export default class Color {
 	 * @param {number} idx a number
 	 * @returns {number} a hue
 	 */
-	static hue (idx) {
+	static hue(idx) {
 		// Here we use 31 bit numbers because JavaScript doesn't have
 		// a 32bit unsigned type, and so the conversion to float would
 		// produce a negative value.
@@ -320,7 +300,6 @@ export default class Color {
 		return (intermediate + 0.561) % 1;
 	}
 
-
 	/**
 	 * Given an index, this will pick a color that looks good.
 	 * @param {number} idx Either the known index (a number) or
@@ -328,7 +307,7 @@ export default class Color {
 	 *					 index for
 	 * @returns {Color} color
 	 */
-	static getColor (idx) {
+	static getColor(idx) {
 		return this.fromHSL(Math.round(this.hue(idx) * 360), 0.91, 0.606);
 	}
 }

@@ -3,15 +3,15 @@ import Matrix from '../Matrix';
 import Base from './Base';
 
 export default class Path extends Base {
-
-
-	draw (ctx, drawNext) {
+	draw(ctx, drawNext) {
 		super.draw(ctx);
 
 		let p = this.points.slice(),
 			l = p.length,
-			minx = 0, miny = 0,
-			maxx = 0, maxy = 0;
+			minx = 0,
+			miny = 0,
+			maxx = 0,
+			maxy = 0;
 
 		ctx.beginPath();
 
@@ -19,16 +19,23 @@ export default class Path extends Base {
 			let x = p[i],
 				y = p[i + 1];
 
-			if (x > maxx) { maxx = x; }
-			if (x < minx) { minx = x; }
+			if (x > maxx) {
+				maxx = x;
+			}
+			if (x < minx) {
+				minx = x;
+			}
 
-			if (y > maxy) { maxy = y; }
-			if (y < miny) { miny = y; }
+			if (y > maxy) {
+				maxy = y;
+			}
+			if (y < miny) {
+				miny = y;
+			}
 
 			if (i + 3 > l) {
 				ctx.lineTo(x, y);
-			}
-			else {
+			} else {
 				let x2 = p[i + 2],
 					y2 = p[i + 3];
 
@@ -42,8 +49,10 @@ export default class Path extends Base {
 		// ctx.closePath();
 
 		this.bbox = {
-			x: minx,	w: maxx - minx,
-			y: miny,	h: maxy - miny
+			x: minx,
+			w: maxx - minx,
+			y: miny,
+			h: maxy - miny,
 		};
 
 		ctx.lineCap = 'round';
@@ -51,11 +60,15 @@ export default class Path extends Base {
 		drawNext();
 	}
 
+	getCenter(transformed) {
+		if (!this.bbox) {
+			return void 0;
+		}
 
-	getCenter (transformed) {
-		if (!this.bbox) { return void 0; }
-
-		let center = [this.bbox.x + (this.bbox.w / 2), this.bbox.y + (this.bbox.h / 2)],
+		let center = [
+				this.bbox.x + this.bbox.w / 2,
+				this.bbox.y + this.bbox.h / 2,
+			],
 			m = new Matrix(this.transform);
 		if (transformed) {
 			return m.transformPoint(center);
@@ -63,8 +76,7 @@ export default class Path extends Base {
 		return center;
 	}
 
-
-	shouldEnableRotation () {
+	shouldEnableRotation() {
 		return false;
 	}
 }

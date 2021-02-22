@@ -12,17 +12,22 @@ const logger = Logger.get('lib:whiteboard:canvas');
 const Blob = global.Blob || global.WebKitBlob || global.webkitBlob;
 
 const SHAPES = {
-	Circle, Line, Path, Polygon, Text, Url
+	Circle,
+	Line,
+	Path,
+	Polygon,
+	Text,
+	Url,
 };
 
-const CANVAS_GOLDEN_RATIO = 1.6180; //http://en.wikipedia.org/wiki/Golden_ratio
+const CANVAS_GOLDEN_RATIO = 1.618; //http://en.wikipedia.org/wiki/Golden_ratio
 
 const OBJECT_NAME = /^Canvas(.+?)Shape$/i;
 
 // const CANVAS_URL_SHAPE_BROKEN_IMAGE = 'whiteboard-error-image';
 // const CANVAS_BROKEN_IMAGE = 'whiteboard-broken-image';
 
-function makeShape (data) {
+function makeShape(data) {
 	//reparent shapes
 	let c = (OBJECT_NAME.exec(data.Class) || [])[1];
 	if (!c) {
@@ -38,9 +43,8 @@ function makeShape (data) {
 	return Shape ? new Shape(data) : null;
 }
 
-
-function buildModelsFromData (scene) {
-	let drawData = { ...scene || {shapeList: []}};
+function buildModelsFromData(scene) {
+	let drawData = { ...(scene || { shapeList: [] }) };
 
 	drawData.shapeList = drawData.shapeList.slice();
 
@@ -58,8 +62,7 @@ function buildModelsFromData (scene) {
 	return drawData;
 }
 
-
-function drawScene (data, canvas, finished) {
+function drawScene(data, canvas, finished) {
 	let c = canvas,
 		w = canvas.offsetWidth || canvas.width,
 		h = canvas.offsetHeight || canvas.height,
@@ -67,7 +70,8 @@ function drawScene (data, canvas, finished) {
 		i = shapes.length - 1;
 
 	//reset context
-	c.width = 1; c.width = w;
+	c.width = 1;
+	c.width = w;
 	c.height = h;
 
 	let ctx = c.getContext('2d');
@@ -77,8 +81,7 @@ function drawScene (data, canvas, finished) {
 	ctx.fillRect(0, 0, w, h);
 	ctx.restore();
 
-
-	(function next (x, cb) {
+	(function next(x, cb) {
 		if (x < 0) {
 			if (cb && cb.call) {
 				cb();
@@ -91,32 +94,26 @@ function drawScene (data, canvas, finished) {
 			ctx.restore();
 			next(x - 1, cb);
 		});
-
-	}(i, finished));
+	})(i, finished);
 }
 
-
 export default class Canvas {
-
-	constructor (data, el = null) {
+	constructor(data, el = null) {
 		this.el = el || document.createElement('canvas');
 		this.updateData(data);
 	}
 
-
-	updateData (scene) {
+	updateData(scene) {
 		this.scene = buildModelsFromData(scene);
 
 		if (scene && scene.viewportRatio) {
 			this.viewportRatio = scene.viewportRatio;
-		}
-		else {
-			this.viewportRatio = CANVAS_GOLDEN_RATIO;   //Default to this for new shapes.
+		} else {
+			this.viewportRatio = CANVAS_GOLDEN_RATIO; //Default to this for new shapes.
 		}
 	}
 
-
-	getData () {
+	getData() {
 		if (!this.scene) {
 			return null;
 		}
@@ -124,9 +121,9 @@ export default class Canvas {
 		let data = {},
 			shapes = this.scene.shapeList;
 
-		data.shapeList	= [];
-		data.MimeType	= 'application/vnd.nextthought.canvas';
-		data.Class	= 'Canvas';
+		data.shapeList = [];
+		data.MimeType = 'application/vnd.nextthought.canvas';
+		data.Class = 'Canvas';
 		data.viewportRatio = this.viewportRatio;
 		data.NTIID = this.scene.NTIID;
 
@@ -137,27 +134,25 @@ export default class Canvas {
 		return data;
 	}
 
-
-	setSize (width, height, redraw = true) {
+	setSize(width, height, redraw = true) {
 		height = Math.round(width / (this.viewportRatio || 1));
 
 		Object.assign(this.el, { width, height });
 
 		if (redraw) {
-			setTimeout(()=>this.drawScene(), 1);
+			setTimeout(() => this.drawScene(), 1);
 		}
 	}
 
-
-	drawScene () {
+	drawScene() {
 		if (!this.scene) {
 			return Promise.reject('No Scene to draw');
 		}
 
 		if (this.drawing) {
 			return this.drawing
-				.catch((e)=>logger.warn(e))
-				.then(()=>this.drawScene());
+				.catch(e => logger.warn(e))
+				.then(() => this.drawScene());
 			// return Promise.reject('Cannot begin drawing while already drawing.');
 		}
 
@@ -171,41 +166,38 @@ export default class Canvas {
 		return this.drawing;
 	}
 
-
-	addShape (shape) {
+	addShape(shape) {
 		this.scene.shapeList.unshift(shape);
 	}
 
-
-	toDataURL (format = 'image/png') {
+	toDataURL(format = 'image/png') {
 		return this.el.toDataURL(format);
 	}
 
-
-	toBlob (type = 'image/png') {
-		let {el} = this;
-		return new Promise(finish=> {
-
+	toBlob(type = 'image/png') {
+		let { el } = this;
+		return new Promise(finish => {
 			if (el.toBlob) {
 				return el.toBlob(finish, type);
 			}
 
-			let binStr = atob( this.toDataURL(type).split(',')[1] ),
+			let binStr = atob(this.toDataURL(type).split(',')[1]),
 				len = binStr.length,
 				arr = new Uint8Array(len);
 
-			for (let i = len - 1; i >= 0; i-- ) {
+			for (let i = len - 1; i >= 0; i--) {
 				arr[i] = binStr.charCodeAt(i);
 			}
 
-			finish( new Blob( [arr], {type} ) );
+			finish(new Blob([arr], { type }));
 		});
 	}
 
-
-	static getThumbnail (scene, asBlob = true, width = 512) {
+	static getThumbnail(scene, asBlob = true, width = 512) {
 		let c = new this(scene);
 		c.setSize(width, width / (scene.viewportRatio || 1), false);
-		return c.drawScene().then(()=> asBlob ? c.toBlob() : c.toDataURL('image/jpeg'));
+		return c
+			.drawScene()
+			.then(() => (asBlob ? c.toBlob() : c.toDataURL('image/jpeg')));
 	}
 }

@@ -1,5 +1,5 @@
 export default class TransformLimitReached extends Error {
-	constructor () {
+	constructor() {
 		super('Transform limit reached');
 	}
 }

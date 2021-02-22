@@ -1,20 +1,18 @@
-import {toRadians, getDegrees, getDistance} from '../utils';
+import { toRadians, getDegrees, getDistance } from '../utils';
 import Matrix from '../Matrix';
 
 import Base from './Base';
 
 export default class Line extends Base {
-
-	getShapeName () {
+	getShapeName() {
 		return 'Line';
 	}
 
-
-	draw (ctx, drawNext) {
+	draw(ctx, drawNext) {
 		let t = this.transform,
 			xy = this.getEndPoint();
 
-		this.transform = { 'a': 1, 'd': 1, 'tx': t.tx, 'ty': t.ty };
+		this.transform = { a: 1, d: 1, tx: t.tx, ty: t.ty };
 		super.draw(ctx);
 		this.transform = t;
 
@@ -25,31 +23,27 @@ export default class Line extends Base {
 
 		delete this.cache.fill;
 		this.bbox = {
-			x: 0,	w: 1,
-			y: (-ctx.lineWidth * 3 - 40 / ctx.canvas.width) / 2,	h: (ctx.lineWidth * 3 + 40 / ctx.canvas.width)
+			x: 0,
+			w: 1,
+			y: (-ctx.lineWidth * 3 - 40 / ctx.canvas.width) / 2,
+			h: ctx.lineWidth * 3 + 40 / ctx.canvas.width,
 		};
 
 		this.performFillAndStroke(ctx);
 		drawNext();
 	}
 
-
-	getEndPoint (m) {
+	getEndPoint(m) {
 		m = m || new Matrix(this.transform);
 		let scale = m.getScaleAsScaler(),
 			rad = m.getRotation();
-		return [
-			scale * Math.cos(rad),
-			scale * Math.sin(rad)
-		];
+		return [scale * Math.cos(rad), scale * Math.sin(rad)];
 	}
 
-
-	modify (nib, x1, y1) {
+	modify(nib, x1, y1) {
 		let m = new Matrix(this.transform),
 			t = m.getTranslation(),
 			p = [t[0], t[1]];
-
 
 		p.push(x1, y1);
 
@@ -62,9 +56,7 @@ export default class Line extends Base {
 		this.transform = m.toTransform();
 	}
 
-
-	showNibs (ctx) {
-
+	showNibs(ctx) {
 		ctx.save();
 
 		let m = new Matrix(this.transform);
@@ -95,5 +87,4 @@ export default class Line extends Base {
 
 		ctx.restore();
 	}
-
 }

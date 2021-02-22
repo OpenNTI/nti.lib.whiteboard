@@ -1,8 +1,7 @@
 import Base from './Base';
 
 export default class Circle extends Base {
-
-	draw (ctx, drawNext) {
+	draw(ctx, drawNext) {
 		super.draw(ctx);
 
 		ctx.beginPath();
@@ -10,8 +9,10 @@ export default class Circle extends Base {
 		ctx.closePath();
 
 		this.bbox = {
-			x: -0.5,	w: 1,
-			y: -0.5,	h: 1
+			x: -0.5,
+			w: 1,
+			y: -0.5,
+			h: 1,
 		};
 
 		this.performFillAndStroke(ctx);

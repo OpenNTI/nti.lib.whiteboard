@@ -1,12 +1,11 @@
 /* eslint-env jest */
 import Matrix from '../Matrix';
-import {toRadians} from '../utils';
+import { toRadians } from '../utils';
 
 const TWO_PI = 2 * Math.PI;
 
-describe('Whiteboard Matrix Utility Class Tests', ()=> {
-
-	test ('should test an identity matrix', ()=> {
+describe('Whiteboard Matrix Utility Class Tests', () => {
+	test('should test an identity matrix', () => {
 		let matrix = new Matrix();
 		let m = matrix.toTransform();
 
@@ -18,9 +17,8 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 		expect(m.ty).toBe(0);
 	});
 
-
-	test ('should init with a matrix', ()=> {
-		let matrix = new Matrix({a: 1, b: 0, c: 0, d: 1, tx: 120, ty: 80});
+	test('should init with a matrix', () => {
+		let matrix = new Matrix({ a: 1, b: 0, c: 0, d: 1, tx: 120, ty: 80 });
 
 		let m = matrix.toTransform();
 
@@ -30,7 +28,6 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 		expect(m.d).toBe(1);
 		expect(m.tx).toBe(120);
 		expect(m.ty).toBe(80);
-
 
 		let translation = matrix.getTranslation();
 		let rotation = matrix.getRotation();
@@ -43,14 +40,12 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 		expect(scale[1]).toBe(1);
 	});
 
-
-	test ('should rotate', ()=> {
-
+	test('should rotate', () => {
 		let matrix = new Matrix();
 
 		let step = Math.PI / 4;
 
-		let getTarget = i=> i * step;
+		let getTarget = i => i * step;
 
 		expect(matrix.toTransform().a).toBe(1);
 		expect(matrix.toTransform().b).toBeCloseTo(0, 4);
@@ -58,10 +53,11 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 		expect(matrix.toTransform().d).toBe(1);
 
 		for (let steps = 0; steps < 8; steps++) {
-
 			let rad = matrix.getRotation();
 
-			if (rad < 0) { rad += TWO_PI; }//account for the values after PI become negative
+			if (rad < 0) {
+				rad += TWO_PI;
+			} //account for the values after PI become negative
 
 			expect(rad).toBeCloseTo(getTarget(steps), 4);
 
@@ -69,21 +65,22 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 
 			rad = matrix.getRotation(); //should always be (-2PI, 2PI), both -2PI and 2PI should be represented as 0.
 
-			if (rad < 0) { rad += TWO_PI; }
+			if (rad < 0) {
+				rad += TWO_PI;
+			}
 
 			expect(rad).toBeCloseTo(getTarget(steps + 1), 4);
 		}
 	});
 
-
-	test ('should scale by 2', ()=> {
+	test('should scale by 2', () => {
 		let t = {
 			a: 0.1342,
 			b: 0.2324,
 			c: 0.2344,
 			d: 0.34221,
 			tx: 0.45563,
-			ty: 0.235667
+			ty: 0.235667,
 		};
 
 		let matrix = new Matrix(t);
@@ -97,9 +94,8 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 		expect(m.b).toBeCloseTo(t.b * 2, 4);
 	});
 
-
-	test ('should translate by (23,57)', ()=> {
-		let t = {a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0};
+	test('should translate by (23,57)', () => {
+		let t = { a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0 };
 		let matrix = new Matrix(t);
 
 		matrix.translate(23, 57);
@@ -111,10 +107,9 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 		expect(m.b).toBe(t.b);
 	});
 
-
-	test ('should translate by (10,20), scale by 2.5, then rotate completely around', ()=> {
+	test('should translate by (10,20), scale by 2.5, then rotate completely around', () => {
 		const f = 2.5;
-		let t = {a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0};
+		let t = { a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0 };
 		let matrix = new Matrix(t);
 
 		let step = Math.PI / 4;
@@ -135,17 +130,17 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 			expect(trans[1]).toBe(20);
 
 			let rad = matrix.getRotation();
-			if (rad < 0) { rad += TWO_PI; }
+			if (rad < 0) {
+				rad += TWO_PI;
+			}
 
 			expect(rad).toBeCloseTo(getTarget(steps + 1), 4);
 		}
-
 	});
 
-
-	test ('should rotate by 120, then scale by 0.45', ()=> {
+	test('should rotate by 120, then scale by 0.45', () => {
 		const f = 0.45;
-		let t = {a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0};
+		let t = { a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0 };
 		let matrix = new Matrix(t);
 		let rad = toRadians(120);
 
@@ -158,5 +153,4 @@ describe('Whiteboard Matrix Utility Class Tests', ()=> {
 		expect(m.c).toBeCloseTo(f * -Math.sin(rad), 4);
 		expect(m.d).toBeCloseTo(t.d * f * Math.cos(rad), 4);
 	});
-
 });
