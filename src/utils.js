@@ -1,6 +1,7 @@
 import url from 'url';
 
 import EXIF from 'exif-js';
+
 import Logger from '@nti/util-logger';
 
 import Matrix from './Matrix';
