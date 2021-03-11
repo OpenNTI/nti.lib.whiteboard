@@ -144,16 +144,16 @@ export default class Canvas {
 		}
 	}
 
-	drawScene() {
+	async drawScene() {
 		if (!this.scene) {
-			return Promise.reject('No Scene to draw');
+			throw new Error('No Scene to draw');
 		}
 
 		if (this.drawing) {
 			return this.drawing
 				.catch(e => logger.warn(e))
-				.then(() => this.drawScene());
-			// return Promise.reject('Cannot begin drawing while already drawing.');
+				.finally(() => this.drawScene());
+			// throw new Error('Cannot begin drawing while already drawing.');
 		}
 
 		this.drawing = new Promise(finish => {
