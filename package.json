@@ -1,6 +1,6 @@
 {
   "name": "@nti/lib-whiteboard",
-  "version": "1.13.0-alpha",
+  "version": "1.13.0",
   "author": "nextthought",
   "license": "UNLICENSED",
   "description": "NextThought Whiteboard Library (Rendering, Interaction, Serialization)",
