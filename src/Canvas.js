@@ -1,3 +1,5 @@
+import { Base64 } from 'js-base64';
+
 import Logger from '@nti/util-logger';
 
 import Circle from './shapes/Circle';
@@ -181,7 +183,7 @@ export default class Canvas {
 				return el.toBlob(finish, type);
 			}
 
-			let binStr = atob(this.toDataURL(type).split(',')[1]),
+			let binStr = Base64.decode(this.toDataURL(type).split(',')[1]),
 				len = binStr.length,
 				arr = new Uint8Array(len);
 
