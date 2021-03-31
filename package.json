@@ -4,12 +4,7 @@
   "author": "nextthought",
   "license": "UNLICENSED",
   "description": "NextThought Whiteboard Library (Rendering, Interaction, Serialization)",
-  "main": ".index.js",
-  "module": "src/index.js",
-  "files": [
-    ".index.js",
-    "src"
-  ],
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/NextThought/nti.lib.whiteboard.git"
@@ -31,8 +26,7 @@
   ],
   "dependencies": {
     "@nti/util-logger": "NextThought/nti.util.logger",
-    "exif-js": "^2.3.0",
-    "esm": "^3.2.25"
+    "exif-js": "^2.3.0"
   },
   "devDependencies": {
     "@nti/lib-scripts": "^2.0.0"
