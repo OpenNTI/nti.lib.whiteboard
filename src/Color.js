@@ -64,7 +64,6 @@ export default class Color {
 	 *
 	 * @param {string} str Color in string.
 	 * @returns {Color} color
-	 *
 	 * @note from ExtJS 4.2.0 Ext.draw.Color#fromString and modified.
 	 */
 	static fromString(str) {
@@ -100,7 +99,6 @@ export default class Color {
 	 * @param {string/string[]} color The color value (i.e 'rgb(255, 255, 255)', 'color: #ffffff').
 	 * Can also be an Array, in this case the function handles the first member.
 	 * @returns {string} The color in hexadecimal format.
-	 *
 	 * @note from ExtJS 4.2.0 Ext.draw.Color#toHex and modified.
 	 */
 	static toHex(color) {
@@ -277,6 +275,7 @@ export default class Color {
 	/**
 	 * Get a hue by index.
 	 * http://ridiculousfish.com/blog/posts/colors.html
+	 *
 	 * @param {number} idx a number
 	 * @returns {number} a hue
 	 */
@@ -302,6 +301,7 @@ export default class Color {
 
 	/**
 	 * Given an index, this will pick a color that looks good.
+	 *
 	 * @param {number} idx Either the known index (a number) or
 	 *					 a username with which to look up the
 	 *					 index for
