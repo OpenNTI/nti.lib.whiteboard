@@ -26,7 +26,8 @@
   ],
   "dependencies": {
     "@nti/util-logger": "NextThought/nti.util.logger",
-    "exif-js": "^2.3.0"
+    "exif-js": "^2.3.0",
+    "js-base64": "^3.7.0"
   },
   "devDependencies": {
     "@nti/lib-scripts": "^2.0.0"
